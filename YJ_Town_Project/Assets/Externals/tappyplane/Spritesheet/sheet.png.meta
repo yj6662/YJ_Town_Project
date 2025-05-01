@@ -131,7 +131,7 @@ TextureImporter:
         width: 809
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,6 +139,27 @@ TextureImporter:
       bones: []
       spriteID: 1bfa99839998aca4bac85f8a9f450ceb
       internalID: 1087396426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackGround
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1214
+        width: 761
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a1b9ae036f89894aa616e4bdde76fda
+      internalID: 855521847
       vertices: []
       indices: 
       edges: []
@@ -154,6 +175,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BackGround: 855521847
       Ground: 1087396426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
