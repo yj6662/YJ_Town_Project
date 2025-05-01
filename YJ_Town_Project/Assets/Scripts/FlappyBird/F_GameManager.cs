@@ -12,6 +12,7 @@ public class F_GameManager : MonoBehaviour
     private int currentScore = 0;
 
     private const string BestScoreKey = "BestScore";
+    public string mainSceneName = "MainScene";
 
     public F_UIManager UIManager
     {
@@ -29,10 +30,7 @@ public class F_GameManager : MonoBehaviour
         uiManager = FindObjectOfType<F_UIManager>();
 
         bestScore = PlayerPrefs.GetInt(BestScoreKey, 0);
-        if (uiManager != null)
-        {
-            uiManager.gameStartPanel.SetActive(true);
-        }
+        uiManager.gameStartPanel.SetActive(true);
         Time.timeScale = 0f;
 
     }
@@ -40,35 +38,32 @@ public class F_GameManager : MonoBehaviour
     {
         uiManager.UpdateScore(0);
     }
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Time.timeScale == 0f)
-            {
-                uiManager.gameStartPanel.SetActive(false);
-                StartGame();
-            }
-        }
-    }
     public void GameOver()
     {
-        Time.timeScale = 0f;
-
         Debug.Log("Game Over");
         CheckBestScore();
         uiManager.SetRestart();
     }
-    private void StartGame()
+    public void StartGame()
     {
-        Time.timeScale = 1f;
-        currentScore = 0;
-        uiManager.UpdateScore(currentScore);
-        uiManager.UpdateBestScore(bestScore);
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+            currentScore = 0;
+            uiManager.gameStartPanel.gameObject.SetActive(false);
+            uiManager.scoreText.gameObject.SetActive(true);
+            uiManager.UpdateScore(0);
+        }
     }
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ExitGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainSceneName);
     }
 
     public void AddScore(int score)

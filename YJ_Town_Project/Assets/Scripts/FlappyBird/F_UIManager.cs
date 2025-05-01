@@ -21,6 +21,7 @@ public class F_UIManager : MonoBehaviour
 
     public void SetRestart()
     {
+        gameStartPanel.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(false);
         restartText.gameObject.SetActive(true);
         bestScoreText.gameObject.SetActive(true);
