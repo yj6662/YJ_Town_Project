@@ -15,6 +15,15 @@ public class M_PlayerController : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     
+    void Start()
+    {
+        camera = Camera.main;
+        if (_spriteRenderer == null)
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+    }
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
