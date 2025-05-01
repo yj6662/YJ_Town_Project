@@ -15,7 +15,7 @@ public class BaseNPCController : MonoBehaviour
         if (collider2D.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            Debug.Log("플레이어 범위 진입");
+            Debug.Log("플레이어 접근");
         }
     }
 
@@ -42,7 +42,6 @@ public class BaseNPCController : MonoBehaviour
 
     public virtual void Interact()
     {
-        // 상호작용 로직을 여기에 구현
-        Debug.Log("NPC와 상호작용 중...");
+        Debug.Log("NPC와 상호작용");
     }
 }

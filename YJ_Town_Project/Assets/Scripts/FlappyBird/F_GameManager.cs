@@ -57,13 +57,13 @@ public class F_GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.Instance.LoadFlappyBirdScene();
     }
 
     public void ExitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainSceneName);
+        SceneLoader.Instance.LoadMainScene();
     }
 
     public void AddScore(int score)
