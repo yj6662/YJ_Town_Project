@@ -11,8 +11,8 @@ public class S_GameManager : MonoBehaviour
     public int bestCombo = 0;
     public int currentCombo = 0;
 
-    private const string S_BestScoreKey = "BestScore";
-    private const string S_BestComboKey = "BestCombo";
+    private const string S_BestScoreKey = "S_BestScore";
+    private const string S_BestComboKey = "S_BestCombo";
 
     public static S_GameManager Instance
     {
@@ -43,7 +43,9 @@ public class S_GameManager : MonoBehaviour
         Debug.Log("Game Over");
         S_CheckBestScore();
         S_CheckBestCombo();
-        Time.timeScale = 0f;
+        var stack = FindObjectOfType<TheStack>();
+        if (stack != null)
+            stack.S_GameOverEffect();
         uiManager.S_GameOver();
     }
 

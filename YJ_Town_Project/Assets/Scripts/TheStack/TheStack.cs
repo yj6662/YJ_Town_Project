@@ -50,6 +50,8 @@ public class TheStack : MonoBehaviour
 
         prevBlockPosition = Vector3.down;
         Spawn_Block();
+        Spawn_Block();
+
     }
 
     void Update()
@@ -273,5 +275,28 @@ public class TheStack : MonoBehaviour
                 (stackBounds.y > BoundSize) ? BoundSize : stackBounds.y;
         }
     }
+    public void S_GameOverEffect()
+    {
+        int childCount = this.transform.childCount;
 
+        for (int i = 1; i < 100; i++)
+        {
+            if (childCount < i)
+                break;
+
+            GameObject go =
+                this.transform.GetChild(childCount - i).gameObject;
+
+            if (go.name.Equals("Rubble"))
+                continue;
+
+            Rigidbody rigid = go.AddComponent<Rigidbody>();
+
+            rigid.AddForce(
+                (Vector3.up * Random.Range(0, 10f)
+                 + Vector3.right * (Random.Range(0, 10f) - 5f))
+                * 100f
+            );
+        }
+    }
 }
