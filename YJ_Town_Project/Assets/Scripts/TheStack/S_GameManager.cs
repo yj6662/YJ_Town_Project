@@ -6,7 +6,7 @@ public class S_GameManager : MonoBehaviour
 {
     public static S_GameManager gameManager;
     private S_UIManager uiManager;
-
+    private TheStack theStack;
     private int bestScore = 0;
     private int currentScore = 0;
     private int bestCombo = 0;
@@ -28,10 +28,10 @@ public class S_GameManager : MonoBehaviour
     {
         gameManager = this;
         uiManager = FindObjectOfType<S_UIManager>();
+        theStack = FindObjectOfType<TheStack>();
 
         bestScore = PlayerPrefs.GetInt(S_BestScoreKey, 0);
         bestCombo = PlayerPrefs.GetInt(S_BestComboKey, 0);
-        uiManager.S_StartGame();
         Time.timeScale = 0f;
     }
 
@@ -45,6 +45,7 @@ public class S_GameManager : MonoBehaviour
         Debug.Log("Game Over");
         S_CheckBestScore();
         S_CheckBestCombo();
+        Time.timeScale = 0f;
         uiManager.S_GameOver();
     }
 
@@ -62,6 +63,12 @@ public class S_GameManager : MonoBehaviour
     }
     public void S_RestartGame()
     {
+        Time.timeScale = 1f;
+        currentScore = 0;
+        currentCombo = 0;
+        uiManager.S_UpdateScore(0);
+        uiManager.S_UpdateCombo(0);
+        theStack.S_ResetGame();
         uiManager.S_RestartGame();
         S_StartGame();
     }

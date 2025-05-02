@@ -38,7 +38,8 @@ public class S_UIManager : MonoBehaviour
     public void S_RestartGame()
     {
         gameOverPanel.SetActive(false);
-        gameStartPanel.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+        comboText.gameObject.SetActive(true);
     }
     public void S_UpdateScore(int score)
     {

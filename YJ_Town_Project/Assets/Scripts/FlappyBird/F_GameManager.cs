@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,18 +47,15 @@ public class F_GameManager : MonoBehaviour
     }
     public void F_StartGame()
     {
-        if (Time.timeScale == 0f)
-        {
             Time.timeScale = 1f;
             currentScore = 0;
             uiManager.gameStartPanel.gameObject.SetActive(false);
             uiManager.scoreText.gameObject.SetActive(true);
             uiManager.F_UpdateScore(0);
-        }
     }
     public void F_RestartGame()
     {
-        F_StartGame();
+        SceneLoader.Instance.LoadFlappyBirdScene();
     }
 
     public void F_ExitGame()

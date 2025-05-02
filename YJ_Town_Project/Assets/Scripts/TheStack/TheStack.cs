@@ -44,9 +44,9 @@ public class TheStack : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale == 0f) return;
         if (Input.GetMouseButtonDown(0))
         {
+            if (Time.timeScale == 0f) return;
             if (PlaceBlock())
             {
                 Spawn_Block();
@@ -238,6 +238,20 @@ public class TheStack : MonoBehaviour
 
         go.AddComponent<Rigidbody>();
         go.name = "Rubble";
+    }
+    public void S_ResetGame()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        stackCount = -1;
+        comboCount = 0;
+        prevBlockPosition = Vector3.down;
+        desiredPosition = Vector3.zero;
+        isMovingX = true;
+
+        Spawn_Block();
     }
 
 }
