@@ -13,7 +13,7 @@ public class F_GameManager : MonoBehaviour
     private int bestScore = 0;
     private int currentScore = 0;
 
-    private const string F_BestScoreKey = "BestScore";
+    private const string F_BestScoreKey = "F_BestScore";
 
     public F_UIManager UIManager
     {
