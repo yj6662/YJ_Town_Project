@@ -5636,7 +5636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f44c2fd43ff348b316bd9c52fa445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSceneName: MainScene
 --- !u!4 &703058511
 Transform:
   m_ObjectHideFlags: 0
@@ -9220,7 +9219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 703058510}
         m_TargetAssemblyTypeName: F_GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: F_StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9873,7 +9872,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 703058510}
         m_TargetAssemblyTypeName: F_GameManager, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: F_ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

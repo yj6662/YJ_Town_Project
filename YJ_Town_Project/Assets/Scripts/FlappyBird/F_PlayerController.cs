@@ -42,7 +42,7 @@ public class F_PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    gameManager.RestartGame();
+                    gameManager.F_RestartGame();
                 }
             }
             else
@@ -91,7 +91,7 @@ public class F_PlayerController : MonoBehaviour
             _rigidbody.velocity = Vector2.zero;
             _rigidbody.isKinematic = true;
             deathCoolDown = 1f;
-            gameManager.GameOver();
+            gameManager.F_GameOver();
         }
     }
 }
