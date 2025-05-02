@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird.unity
+    guid: f9dd770e4b4bc234a91c638825b8fda0
+  - enabled: 1
+    path: Assets/Scenes/TheStack.unity
+    guid: 61e70688ff8f21b41a40fe9a2aa009ff
+  - enabled: 1
+    path: Assets/Scenes/TopDownShooting.unity
+    guid: aacfe00f31bee4241a79d68c67e2522c
   m_configObjects: {}

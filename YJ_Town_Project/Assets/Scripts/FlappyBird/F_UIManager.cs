@@ -19,7 +19,7 @@ public class F_UIManager : MonoBehaviour
         bestScoreTextUI.gameObject.SetActive(false);
     }
 
-    public void SetRestart()
+    public void F_SetRestart()
     {
         gameStartPanel.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(false);
@@ -28,12 +28,12 @@ public class F_UIManager : MonoBehaviour
         bestScoreTextUI.gameObject.SetActive(true);
     }
 
-    public void UpdateScore(int score)
+    public void F_UpdateScore(int score)
     {
         scoreText.text = score.ToString();
     }
 
-    public void UpdateBestScore(int bestscore)
+    public void F_UpdateBestScore(int bestscore)
     {
         bestScoreText.text = bestscore.ToString();
     }

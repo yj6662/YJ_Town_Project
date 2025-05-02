@@ -42,7 +42,7 @@ public class Obstacle : MonoBehaviour
         F_PlayerController player = other.GetComponent<F_PlayerController>();
         if (player != null) 
         { 
-            gameManager.AddScore(1);
+            gameManager.F_AddScore(1);
         }
     }
 }
