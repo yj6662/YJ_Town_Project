@@ -14,18 +14,27 @@ public class TheStack : MonoBehaviour
     private Vector3 prevBlockPosition;
     private Vector3 desiredPosition;
     private Vector3 stackBounds = new Vector2(BoundSize, BoundSize);
-
+    S_GameManager gameManager = null;
     Transform lastBlock = null;
     float blockTransition = 0f;
     float secondaryPosition = 0f;
 
     int stackCount = -1;
+    public int Score { get { return stackCount; } }
     int comboCount = 0;
+    public int Combo { get { return comboCount; } }
+    private int maxCombo = 0;
+    public int MaxCombo { get => maxCombo; }
 
+    int bestScore = 0;
+    public int BestScore { get => bestScore; }
+    int bestCombo = 0;
+    public int BestCombo { get => bestCombo; }
     public Color prevColor;
     public Color nextColor;
 
     bool isMovingX = true;
+
 
     void Start()
     {
@@ -35,25 +44,30 @@ public class TheStack : MonoBehaviour
             return;
         }
 
+
         prevColor = GetRandomColor();
         nextColor = GetRandomColor();
 
         prevBlockPosition = Vector3.down;
         Spawn_Block();
+        Spawn_Block();
+
     }
 
     void Update()
     {
-        if (Time.timeScale == 0f) return;
         if (Input.GetMouseButtonDown(0))
         {
+            if (Time.timeScale == 0f) return;
             if (PlaceBlock())
             {
+                S_GameManager.Instance.S_AddScore(1);
                 Spawn_Block();
             }
             else
             {
                 S_GameManager.Instance.S_GameOver();
+                
             }
         }
 
@@ -63,7 +77,6 @@ public class TheStack : MonoBehaviour
 
     bool Spawn_Block()
     {
-        // 이전블럭 저장
         if (lastBlock != null)
             prevBlockPosition = lastBlock.localPosition;
 
@@ -178,9 +191,12 @@ public class TheStack : MonoBehaviour
                         , lastPosition.z),
                     new Vector3(deltaX, 1, stackBounds.y)
                 );
+                S_GameManager.Instance.S_ResetCombo();
+                comboCount = 0;
             }
             else
             {
+                ComboCheck();
                 lastBlock.localPosition = prevBlockPosition + Vector3.up;
             }
         }
@@ -215,9 +231,12 @@ public class TheStack : MonoBehaviour
                             : lastPosition.z - stackBounds.y / 2 - rubbleHalfScale),
                     new Vector3(stackBounds.x, 1, deltaZ)
                 );
+                S_GameManager.Instance.S_ResetCombo();
+                comboCount = 0;
             }
             else
             {
+                ComboCheck();
                 lastBlock.localPosition = prevBlockPosition + Vector3.up;
             }
         }
@@ -239,5 +258,45 @@ public class TheStack : MonoBehaviour
         go.AddComponent<Rigidbody>();
         go.name = "Rubble";
     }
+    void ComboCheck()
+    {
+        comboCount++;
 
+        if (comboCount > maxCombo)
+            maxCombo = comboCount;
+
+        if ((comboCount % 5) == 0)
+        {
+            Debug.Log("5Combo Success!");
+            stackBounds += new Vector3(0.5f, 0.5f);
+            stackBounds.x =
+                (stackBounds.x > BoundSize) ? BoundSize : stackBounds.x;
+            stackBounds.y =
+                (stackBounds.y > BoundSize) ? BoundSize : stackBounds.y;
+        }
+    }
+    public void S_GameOverEffect()
+    {
+        int childCount = this.transform.childCount;
+
+        for (int i = 1; i < 100; i++)
+        {
+            if (childCount < i)
+                break;
+
+            GameObject go =
+                this.transform.GetChild(childCount - i).gameObject;
+
+            if (go.name.Equals("Rubble"))
+                continue;
+
+            Rigidbody rigid = go.AddComponent<Rigidbody>();
+
+            rigid.AddForce(
+                (Vector3.up * Random.Range(0, 10f)
+                 + Vector3.right * (Random.Range(0, 10f) - 5f))
+                * 100f
+            );
+        }
+    }
 }

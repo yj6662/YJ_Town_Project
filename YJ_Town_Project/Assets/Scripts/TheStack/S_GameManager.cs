@@ -6,14 +6,13 @@ public class S_GameManager : MonoBehaviour
 {
     public static S_GameManager gameManager;
     private S_UIManager uiManager;
+    public int bestScore = 0;
+    public int currentScore = 0;
+    public int bestCombo = 0;
+    public int currentCombo = 0;
 
-    private int bestScore = 0;
-    private int currentScore = 0;
-    private int bestCombo = 0;
-    private int currentCombo = 0;
-
-    private const string S_BestScoreKey = "BestScore";
-    private const string S_BestComboKey = "BestCombo";
+    private const string S_BestScoreKey = "S_BestScore";
+    private const string S_BestComboKey = "S_BestCombo";
 
     public static S_GameManager Instance
     {
@@ -31,7 +30,6 @@ public class S_GameManager : MonoBehaviour
 
         bestScore = PlayerPrefs.GetInt(S_BestScoreKey, 0);
         bestCombo = PlayerPrefs.GetInt(S_BestComboKey, 0);
-        uiManager.S_StartGame();
         Time.timeScale = 0f;
     }
 
@@ -45,6 +43,9 @@ public class S_GameManager : MonoBehaviour
         Debug.Log("Game Over");
         S_CheckBestScore();
         S_CheckBestCombo();
+        var stack = FindObjectOfType<TheStack>();
+        if (stack != null)
+            stack.S_GameOverEffect();
         uiManager.S_GameOver();
     }
 
@@ -62,8 +63,7 @@ public class S_GameManager : MonoBehaviour
     }
     public void S_RestartGame()
     {
-        uiManager.S_RestartGame();
-        S_StartGame();
+        SceneLoader.Instance.LoadTheStackScene();
     }
     public void S_ExitGame()
     {
@@ -74,11 +74,12 @@ public class S_GameManager : MonoBehaviour
     public void S_AddScore(int score)
     {
         currentScore++;
-        currentCombo++;
         uiManager.S_UpdateScore(currentScore);
+        S_CheckBestScore();
+        currentCombo++;
         uiManager.S_UpdateCombo(currentCombo);
+        S_CheckBestCombo();
     }
-
     public void S_ResetCombo()
     {
         currentCombo = 0;

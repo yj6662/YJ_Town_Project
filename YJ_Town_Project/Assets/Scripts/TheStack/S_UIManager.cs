@@ -10,7 +10,6 @@ public class S_UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI comboText;
     [SerializeField] private TextMeshProUGUI finalScoreText;
-    [SerializeField] private TextMeshProUGUI finalComboText;
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestComboText;
     public void Awake()
@@ -27,6 +26,7 @@ public class S_UIManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         scoreText.gameObject.SetActive(true);
         comboText.gameObject.SetActive(true);
+
     }
     public void S_GameOver()
     {
@@ -34,11 +34,18 @@ public class S_UIManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         scoreText.gameObject.SetActive(false);
         comboText.gameObject.SetActive(false);
+        finalScoreText.gameObject.SetActive(true);
+        bestScoreText.gameObject.SetActive(true);
+        bestComboText.gameObject.SetActive(true);
+        S_UpdateFinalScore(S_GameManager.Instance.currentScore);
+        S_UpdateBestScore(S_GameManager.Instance.bestScore);
+        S_UpdateBestCombo(S_GameManager.Instance.bestCombo);
     }
     public void S_RestartGame()
     {
         gameOverPanel.SetActive(false);
-        gameStartPanel.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+        comboText.gameObject.SetActive(true);
     }
     public void S_UpdateScore(int score)
     {
@@ -56,4 +63,9 @@ public class S_UIManager : MonoBehaviour
     {
         bestComboText.text = bestCombo.ToString();
     }
+    public void S_UpdateFinalScore(int score)
+    {
+        finalScoreText.text = score.ToString();
+    }
+
 }

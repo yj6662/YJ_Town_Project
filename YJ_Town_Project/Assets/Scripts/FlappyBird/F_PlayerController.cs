@@ -23,14 +23,6 @@ public class F_PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
-        if (animator == null)
-        {
-            Debug.LogError("Animator component not found!");
-        }
-        if (_rigidbody == null)
-        {
-            Debug.LogError("Rigidbody2D component not found!");
-        }
     }
 
     // Update is called once per frame
@@ -42,6 +34,11 @@ public class F_PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
+                    Debug.Log("게임 재시작");
+                    isDead = false;
+                    animator.SetBool("IsDie", false);
+                    _rigidbody.isKinematic = false;
+
                     gameManager.F_RestartGame();
                 }
             }
