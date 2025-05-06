@@ -12,7 +12,7 @@ public class BaseNPCController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (collider2D.CompareTag("Player"))
+        if (collider2D.CompareTag("MainPlayer"))
         {
             isPlayerInRange = true;
             Debug.Log("플레이어 접근");
@@ -21,7 +21,7 @@ public class BaseNPCController : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D collider2D)
     {
-        if (collider2D.CompareTag("Player"))
+        if (collider2D.CompareTag("MainPlayer"))
         {
             isPlayerInRange = false;
             Debug.Log("플레이어 범위 이탈");
@@ -30,14 +30,11 @@ public class BaseNPCController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (isPlayerInRange)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
             {
                 Debug.Log("NPC와 상호작용");
                 Interact();
             }
-        }
     }
 
     public virtual void Interact()

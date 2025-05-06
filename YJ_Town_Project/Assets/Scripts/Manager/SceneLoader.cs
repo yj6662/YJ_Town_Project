@@ -26,20 +26,61 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+
     public void LoadMainScene()
     {
         SceneManager.LoadScene(mainSceneName);
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != mainSceneName)
+            return;
+
+        var player = GameObject.FindWithTag("MainPlayer")?.transform;
+        if (player == null)
+        {
+            return;
+        }
+        player.position = GameManager.instance.lastPosition;
+        player.rotation = GameManager.instance.lastRotation;
+    }
     public void LoadFlappyBirdScene()
     {
+        var player = GameObject.FindWithTag("MainPlayer")?.transform;
+        if (player != null)
+        {
+            GameManager.instance.lastPosition = player.position;
+            GameManager.instance.lastRotation = player.rotation;
+        }
         SceneManager.LoadScene(flappyBirdScene);
     }
     public void LoadTopDownShootingScene()
     {
+        var player = GameObject.FindWithTag("MainPlayer")?.transform;
+        if (player != null)
+        {
+            GameManager.instance.lastPosition = player.position;
+            GameManager.instance.lastRotation = player.rotation;
+        }
         SceneManager.LoadScene(topDownShootingScene);
     }
     public void LoadTheStackScene()
     {
+        var player = GameObject.FindWithTag("MainPlayer")?.transform;
+        if (player != null)
+        {
+            GameManager.instance.lastPosition = player.position;
+            GameManager.instance.lastRotation = player.rotation;
+        }
         SceneManager.LoadScene(theStackScene);
     }
     public void LoadScene(string sceneName)
