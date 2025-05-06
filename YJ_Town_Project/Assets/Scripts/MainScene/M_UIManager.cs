@@ -5,8 +5,6 @@ using UnityEngine;
 public class M_UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameStartPanel;
-    [SerializeField] private GameObject elfPanel;
-    [SerializeField] private GameObject dwalfPanel;
 
     public void Awake()
     {
