@@ -27,6 +27,7 @@ public class GoblinNPC : BaseNPCController
         goblinTextPanel.SetActive(false);
         shopPanel.SetActive(true);
     }
+
     public void OnNoButtonClicked()
     {
         goblinText.SetActive(false);
