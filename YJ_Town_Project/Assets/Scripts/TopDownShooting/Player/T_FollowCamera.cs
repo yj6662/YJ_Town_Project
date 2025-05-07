@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class T_FollowCamera : MonoBehaviour
+public class M_FollowCamera : MonoBehaviour
 {
     public Transform target;
     float offsetX;
@@ -12,7 +12,7 @@ public class T_FollowCamera : MonoBehaviour
     {
         if (target== null)
         {
-            target = GameObject.FindGameObjectWithTag("MainPlayer").transform;
+            target = GameObject.FindGameObjectWithTag("Player").transform;
         }
         offsetX = transform.position.x - target.position.x;
         offsetY = transform.position.y - target.position.y;
