@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f210b46d233104441b383a35b1b24bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSoundClip: {fileID: 8300000, guid: 388c8840f8036bc49bef8200dfb6a9a3, type: 3}
   delay: 3
   weaponSize: 0.6
   power: 2
