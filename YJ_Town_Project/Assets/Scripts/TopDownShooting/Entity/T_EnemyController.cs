@@ -64,6 +64,7 @@ public class T_EnemyController : BaseController
     public override void Death()
     {
         base.Death();
+        T_GameManager.instance.UpdateScore(1);
         enemyManager.RemoveEnemyOnDeath(this);
     }
 }

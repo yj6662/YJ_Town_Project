@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
+    public AudioClip attackSoundClip;
+
     [Header("Attack Info")]
     [SerializeField] private float delay = 1f;
     public float Delay { get => delay; set => delay = value; }
@@ -55,6 +57,8 @@ public class WeaponHandler : MonoBehaviour
     public virtual void Attack()
     {
         AttackAnimation();
+        if (attackSoundClip != null)
+            SoundManager.PlayClip(attackSoundClip);
     }
 
     public void AttackAnimation()
