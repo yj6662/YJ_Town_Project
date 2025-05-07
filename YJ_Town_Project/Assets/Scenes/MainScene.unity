@@ -28576,8 +28576,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 368328426}
-        m_TargetAssemblyTypeName: DwalfNPC, Assembly-CSharp
+      - m_Target: {fileID: 649847451}
+        m_TargetAssemblyTypeName: GoblinNPC, Assembly-CSharp
         m_MethodName: OnYesButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -29082,8 +29082,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 368328426}
-        m_TargetAssemblyTypeName: DwalfNPC, Assembly-CSharp
+      - m_Target: {fileID: 649847451}
+        m_TargetAssemblyTypeName: GoblinNPC, Assembly-CSharp
         m_MethodName: OnNoButtonClicked
         m_Mode: 1
         m_Arguments:
